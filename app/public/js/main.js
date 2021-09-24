@@ -5,7 +5,19 @@ const Person = {
     }
   },
   created() {
-    fetch('https://randomuser.me/api/')
+    this.refreshUser();
+    console.log("B");
+  },
+  computed: {
+    pretty() {
+      return dayjs(this.person.dob.date)
+        .format('D MMM YYYY');
+
+    }
+  },
+  methods: {
+    refreshUser() {
+      fetch('https://randomuser.me/api/')
       .then(response => response.json())
       .then((parsedJson) => {
         console.log(parsedJson);
@@ -17,16 +29,8 @@ const Person = {
       .catch(err => {
         console.error(err)
       })
-
-    console.log("B");
-  },
-    computed: {
-        pretty() {
-          return dayjs(this.person.dob.date)
-          .format('D MMM YYYY');
-  
-        }
-      },
+    }
+  }
 }
 
 Vue.createApp(Person).mount('#personApp');
