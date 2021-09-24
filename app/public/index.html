@@ -58,7 +58,9 @@
           <hr>      
           <img v-bind:src="picture" class="img-responsive" alt="Responsive image" width="400" height="410">
           <br>
-          <button @click="refreshUser"> Refresh </button>
+          <form v-on:submit.prevent="refreshUser">
+          <button type="submit">Reload</button>
+        </form>
          </div> 
         </div>
      
